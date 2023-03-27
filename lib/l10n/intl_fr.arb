@@ -1,4 +1,5 @@
 {
     "pageUsers" : "Exploitants",
-    "session" : "Sessions"
+    "session" : "Sessions",
+    "login" : "Identification"
 }

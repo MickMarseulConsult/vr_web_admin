@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vr_web_admin/generated/l10n.dart';
 
 abstract class ILoginViewModel extends ChangeNotifier {
   String? get passwordErrorMessage;
@@ -21,7 +22,10 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: const Text("VR WEB ADMIN"),
+        elevation: 4,
+      ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: AnimatedBuilder(
@@ -57,7 +61,10 @@ class LoginScreen extends StatelessWidget {
                     Center(
                       child: ElevatedButton(
                           onPressed: _loggedInButtonPressed,
-                          child: const Text("Sign in")),
+                          child: Text(
+                            S.of(context).login,
+                            style: const TextStyle(fontSize: 15),
+                          )),
                     ),
                   if (errorMessage != null) Text(errorMessage)
                 ],
