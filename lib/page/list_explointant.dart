@@ -6,8 +6,8 @@ import 'package:vr_web_admin/page/widgets/line_exploitant.dart';
 
 abstract class IListExploitantViewModel {
   //String get email;
-  getListExploitant();
-  getIdManager();
+  getAllExploitant();
+  getInfoById(String index);
 
   //void userTouchedSettingsButton();
   //void userTouchedLogoutButton();
@@ -28,7 +28,7 @@ class ListExploitant extends StatelessWidget {
               width: double.infinity,
               height: 500,
               child: FutureBuilder<List<DirectusUser>>(
-                  future: viewModel.getListExploitant(),
+                  future: viewModel.getAllExploitant(),
                   initialData: const [],
                   builder: (context, snapshot) {
                     if (snapshot.hasError) {
@@ -42,9 +42,10 @@ class ListExploitant extends StatelessWidget {
                         itemCount: data!.length,
                         itemBuilder: (context, index) {
                           return LineExploitant(
-                            snapshot.data!,
-                            index,
-                          );
+                              snapshot.data!,
+                              index,
+                              viewModel.getInfoById(
+                                  snapshot.data![index].id.toString()));
                         },
                       ));
                     }

@@ -3,14 +3,13 @@
 
 import 'dart:core';
 import 'package:directus_api_manager/src/annotations.dart' as prefix0;
-import 'package:directus_api_manager/src/model/directus_user.dart' as prefix7;
-import 'package:vr_web_admin/models/sessions.dart' as prefix5;
-import 'package:vr_web_admin/models/user_detail.dart' as prefix6;
-import 'package:vr_web_admin/page/listexplointant_viewmode.dart' as prefix3;
-import 'package:vr_web_admin/page/login_viewmodel.dart' as prefix2;
+import 'package:directus_api_manager/src/model/directus_user.dart' as prefix6;
+import 'package:vr_web_admin/models/sessions.dart' as prefix4;
+import 'package:vr_web_admin/models/user_detail.dart' as prefix5;
+import 'package:vr_web_admin/page/listexplointant_viewmode.dart' as prefix2;
+import 'package:vr_web_admin/page/login_viewmodel.dart' as prefix1;
 import 'package:vr_web_admin/page/widgets/line_exploitant_viewmodel.dart'
-    as prefix4;
-import 'package:vr_web_admin/use_cases/exploitant_use_cases.dart' as prefix1;
+    as prefix3;
 
 // ignore_for_file: camel_case_types
 // ignore_for_file: implementation_imports
@@ -29,8 +28,8 @@ final _data = <r.Reflectable, r.ReflectorData>{
   const prefix0.DirectusCollection(): r.ReflectorData(
       <m.TypeMirror>[
         r.NonGenericClassMirrorImpl(
-            r'ExploitantUseCases',
-            r'.ExploitantUseCases',
+            r'LoginViewModel',
+            r'.LoginViewModel',
             134217735,
             0,
             const prefix0.DirectusCollection(),
@@ -41,20 +40,17 @@ final _data = <r.Reflectable, r.ReflectorData>{
             {},
             {},
             {
-              r'': (bool b) => (_apiManager) =>
-                  b ? prefix1.ExploitantUseCases(_apiManager) : null
+              r'': (bool b) => (_useCases, _router) =>
+                  b ? prefix1.LoginViewModel(_useCases, _router) : null
             },
             0,
             -1,
             const <int>[-1],
-            const <Object>[
-              const prefix0.DirectusCollection(),
-              const prefix0.CollectionMetadata(endpointName: "users_details")
-            ],
+            const <Object>[const prefix0.DirectusCollection()],
             null),
         r.NonGenericClassMirrorImpl(
-            r'LoginViewModel',
-            r'.LoginViewModel',
+            r'ListExploitantViewModel',
+            r'.ListExploitantViewModel',
             134217735,
             1,
             const prefix0.DirectusCollection(),
@@ -65,8 +61,10 @@ final _data = <r.Reflectable, r.ReflectorData>{
             {},
             {},
             {
-              r'': (bool b) => (_useCases, _router) =>
-                  b ? prefix2.LoginViewModel(_useCases, _router) : null
+              r'': (bool b) => (_apiManager, _user, _router, _useCases) => b
+                  ? prefix2.ListExploitantViewModel(
+                      _apiManager, _user, _router, _useCases)
+                  : null
             },
             1,
             -1,
@@ -74,8 +72,8 @@ final _data = <r.Reflectable, r.ReflectorData>{
             const <Object>[const prefix0.DirectusCollection()],
             null),
         r.NonGenericClassMirrorImpl(
-            r'ListExploitantViewModel',
-            r'.ListExploitantViewModel',
+            r'LineExploitantViewModel',
+            r'.LineExploitantViewModel',
             134217735,
             2,
             const prefix0.DirectusCollection(),
@@ -86,34 +84,11 @@ final _data = <r.Reflectable, r.ReflectorData>{
             {},
             {},
             {
-              r'': (bool b) => (_apiManager, _user, _router, _useCases) => b
-                  ? prefix3.ListExploitantViewModel(
-                      _apiManager, _user, _router, _useCases)
+              r'newItem': (bool b) => (_apiManager) => b
+                  ? prefix3.LineExploitantViewModel.newItem(_apiManager)
                   : null
             },
             2,
-            -1,
-            const <int>[-1],
-            const <Object>[const prefix0.DirectusCollection()],
-            null),
-        r.NonGenericClassMirrorImpl(
-            r'LineExploitantViewModel',
-            r'.LineExploitantViewModel',
-            134217735,
-            3,
-            const prefix0.DirectusCollection(),
-            const <int>[3],
-            const <int>[],
-            const <int>[],
-            -1,
-            {},
-            {},
-            {
-              r'newItem': (bool b) => (_apiManager) => b
-                  ? prefix4.LineExploitantViewModel.newItem(_apiManager)
-                  : null
-            },
-            3,
             -1,
             const <int>[-1],
             const <Object>[
@@ -125,9 +100,9 @@ final _data = <r.Reflectable, r.ReflectorData>{
             r'Sessions',
             r'.Sessions',
             134217735,
-            4,
+            3,
             const prefix0.DirectusCollection(),
-            const <int>[4, 5],
+            const <int>[3, 4],
             const <int>[],
             const <int>[],
             -1,
@@ -135,11 +110,11 @@ final _data = <r.Reflectable, r.ReflectorData>{
             {},
             {
               r'newItem': (bool b) =>
-                  () => b ? prefix5.Sessions.newItem() : null,
+                  () => b ? prefix4.Sessions.newItem() : null,
               r'': (bool b) => (rawReceivedData) =>
-                  b ? prefix5.Sessions(rawReceivedData) : null
+                  b ? prefix4.Sessions(rawReceivedData) : null
             },
-            4,
+            3,
             -1,
             const <int>[-1],
             const <Object>[
@@ -151,9 +126,9 @@ final _data = <r.Reflectable, r.ReflectorData>{
             r'UsersDetails',
             r'.UsersDetails',
             134217735,
-            5,
+            4,
             const prefix0.DirectusCollection(),
-            const <int>[6],
+            const <int>[5],
             const <int>[],
             const <int>[],
             -1,
@@ -161,9 +136,9 @@ final _data = <r.Reflectable, r.ReflectorData>{
             {},
             {
               r'': (bool b) => (rawReceivedData) =>
-                  b ? prefix6.UsersDetails(rawReceivedData) : null
+                  b ? prefix5.UsersDetails(rawReceivedData) : null
             },
-            5,
+            4,
             -1,
             const <int>[-1],
             const <Object>[
@@ -175,9 +150,9 @@ final _data = <r.Reflectable, r.ReflectorData>{
             r'DirectusUser',
             r'.DirectusUser',
             134217735,
-            6,
+            5,
             const prefix0.DirectusCollection(),
-            const <int>[7, 8],
+            const <int>[6, 7],
             const <int>[],
             const <int>[],
             -1,
@@ -185,39 +160,37 @@ final _data = <r.Reflectable, r.ReflectorData>{
             {},
             {
               r'': (bool b) => (rawReceivedData) =>
-                  b ? prefix7.DirectusUser(rawReceivedData) : null,
+                  b ? prefix6.DirectusUser(rawReceivedData) : null,
               r'newDirectusUser': (bool b) =>
-                  () => b ? prefix7.DirectusUser.newDirectusUser() : null
+                  () => b ? prefix6.DirectusUser.newDirectusUser() : null
             },
-            6,
+            5,
             -1,
             const <int>[-1],
             const <Object>[const prefix0.DirectusCollection()],
             null)
       ],
       <m.DeclarationMirror>[
-        r.MethodMirrorImpl(r'', 0, 0, -1, -1, -1, null, const <int>[0],
+        r.MethodMirrorImpl(r'', 0, 0, -1, -1, -1, null, const <int>[0, 1],
             const prefix0.DirectusCollection(), const []),
-        r.MethodMirrorImpl(r'', 0, 1, -1, -1, -1, null, const <int>[1, 2],
+        r.MethodMirrorImpl(r'', 0, 1, -1, -1, -1, null, const <int>[2, 3, 4, 5],
             const prefix0.DirectusCollection(), const []),
-        r.MethodMirrorImpl(r'', 0, 2, -1, -1, -1, null, const <int>[3, 4, 5, 6],
+        r.MethodMirrorImpl(r'newItem', 0, 2, -1, -1, -1, null, const <int>[6],
             const prefix0.DirectusCollection(), const []),
-        r.MethodMirrorImpl(r'newItem', 0, 3, -1, -1, -1, null, const <int>[7],
+        r.MethodMirrorImpl(r'newItem', 0, 3, -1, -1, -1, null, const <int>[],
             const prefix0.DirectusCollection(), const []),
-        r.MethodMirrorImpl(r'newItem', 0, 4, -1, -1, -1, null, const <int>[],
+        r.MethodMirrorImpl(r'', 0, 3, -1, -1, -1, null, const <int>[7],
             const prefix0.DirectusCollection(), const []),
         r.MethodMirrorImpl(r'', 0, 4, -1, -1, -1, null, const <int>[8],
             const prefix0.DirectusCollection(), const []),
         r.MethodMirrorImpl(r'', 0, 5, -1, -1, -1, null, const <int>[9],
             const prefix0.DirectusCollection(), const []),
-        r.MethodMirrorImpl(r'', 0, 6, -1, -1, -1, null, const <int>[10],
-            const prefix0.DirectusCollection(), const []),
-        r.MethodMirrorImpl(r'newDirectusUser', 0, 6, -1, -1, -1, null,
+        r.MethodMirrorImpl(r'newDirectusUser', 0, 5, -1, -1, -1, null,
             const <int>[], const prefix0.DirectusCollection(), const [])
       ],
       <m.ParameterMirror>[
         r.ParameterMirrorImpl(
-            r'_apiManager',
+            r'_useCases',
             134349862,
             0,
             const prefix0.DirectusCollection(),
@@ -229,21 +202,9 @@ final _data = <r.Reflectable, r.ReflectorData>{
             null,
             null),
         r.ParameterMirrorImpl(
-            r'_useCases',
-            134349862,
-            1,
-            const prefix0.DirectusCollection(),
-            -1,
-            -1,
-            -1,
-            null,
-            const [],
-            null,
-            null),
-        r.ParameterMirrorImpl(
             r'_router',
             134349862,
-            1,
+            0,
             const prefix0.DirectusCollection(),
             -1,
             -1,
@@ -255,7 +216,7 @@ final _data = <r.Reflectable, r.ReflectorData>{
         r.ParameterMirrorImpl(
             r'_apiManager',
             134349862,
-            2,
+            1,
             const prefix0.DirectusCollection(),
             -1,
             -1,
@@ -267,9 +228,9 @@ final _data = <r.Reflectable, r.ReflectorData>{
         r.ParameterMirrorImpl(
             r'_user',
             134349862,
-            2,
+            1,
             const prefix0.DirectusCollection(),
-            6,
+            5,
             -1,
             -1,
             null,
@@ -279,7 +240,7 @@ final _data = <r.Reflectable, r.ReflectorData>{
         r.ParameterMirrorImpl(
             r'_router',
             134349862,
-            2,
+            1,
             const prefix0.DirectusCollection(),
             -1,
             -1,
@@ -291,7 +252,7 @@ final _data = <r.Reflectable, r.ReflectorData>{
         r.ParameterMirrorImpl(
             r'_useCases',
             134349862,
-            2,
+            1,
             const prefix0.DirectusCollection(),
             -1,
             -1,
@@ -303,7 +264,7 @@ final _data = <r.Reflectable, r.ReflectorData>{
         r.ParameterMirrorImpl(
             r'_apiManager',
             134349862,
-            3,
+            2,
             const prefix0.DirectusCollection(),
             -1,
             -1,
@@ -315,7 +276,7 @@ final _data = <r.Reflectable, r.ReflectorData>{
         r.ParameterMirrorImpl(
             r'rawReceivedData',
             151126022,
-            5,
+            4,
             const prefix0.DirectusCollection(),
             -1,
             -1,
@@ -327,7 +288,7 @@ final _data = <r.Reflectable, r.ReflectorData>{
         r.ParameterMirrorImpl(
             r'rawReceivedData',
             151127046,
-            6,
+            5,
             const prefix0.DirectusCollection(),
             -1,
             -1,
@@ -339,7 +300,7 @@ final _data = <r.Reflectable, r.ReflectorData>{
         r.ParameterMirrorImpl(
             r'rawReceivedData',
             151126022,
-            7,
+            6,
             const prefix0.DirectusCollection(),
             -1,
             -1,
@@ -350,28 +311,17 @@ final _data = <r.Reflectable, r.ReflectorData>{
             null)
       ],
       <Type>[
-        prefix1.ExploitantUseCases,
-        prefix2.LoginViewModel,
-        prefix3.ListExploitantViewModel,
-        prefix4.LineExploitantViewModel,
-        prefix5.Sessions,
-        prefix6.UsersDetails,
-        prefix7.DirectusUser
+        prefix1.LoginViewModel,
+        prefix2.ListExploitantViewModel,
+        prefix3.LineExploitantViewModel,
+        prefix4.Sessions,
+        prefix5.UsersDetails,
+        prefix6.DirectusUser
       ],
-      7,
+      6,
       {},
       {},
       <m.LibraryMirror>[
-        r.LibraryMirrorImpl(
-            r'',
-            Uri.parse(
-                'package:vr_web_admin/use_cases/exploitant_use_cases.dart'),
-            const prefix0.DirectusCollection(),
-            const <int>[],
-            {},
-            {},
-            const [],
-            null),
         r.LibraryMirrorImpl(
             r'',
             Uri.parse('package:vr_web_admin/page/login_viewmodel.dart'),

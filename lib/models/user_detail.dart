@@ -11,5 +11,7 @@ class UsersDetails extends DirectusItem {
   String get identification => getValue(forKey: "identification");
   //set title(String value) => setValue(value, forKey: "title");
   String get rs => getValue(forKey: "Raison_Sociale");
+  bool get autorised => getValue(forKey: "autorised");
+  DateTime get inscription => getDateTime(forKey: "inscription_date");
   //set album(String value) => setValue(value, forKey: "album");
 }
