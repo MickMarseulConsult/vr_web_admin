@@ -1,8 +1,9 @@
 import 'package:directus_api_manager/directus_api_manager.dart';
 import 'package:vr_web_admin/page/list_explointant.dart';
+import 'package:vr_web_admin/models/user_detail.dart';
 
 abstract class IExploitantUseCases {
-  Future<String?> getRS(String? id);
+  Future<String?> getRS(DirectusUser? user);
 }
 
 abstract class UserHomeRouter {
@@ -27,6 +28,6 @@ class ListExploitantViewModel extends IListExploitantViewModel {
 
   @override
   getIdManager() {
-    _useCases.getRS(_user.id);
+    _useCases.getRS(_user);
   }
 }

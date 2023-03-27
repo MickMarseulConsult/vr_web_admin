@@ -23,6 +23,7 @@ class NavigationDelegate extends RouterDelegate<NavigationPath>
     implements LoginRouter, UserHomeRouter {
   //final RemoteDataManager _remoteDataManager = RemoteDataManager();
   DirectusUser? _currentUser;
+  String? get currentUserID => _currentUser!.id;
   //final menuViewModel = IMenuViewModel;
   //final routerGeneral = RouterGeneral;
   bool _displaySettings = false;

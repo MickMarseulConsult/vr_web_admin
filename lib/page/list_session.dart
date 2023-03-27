@@ -5,6 +5,7 @@ import '../generated/l10n.dart';
 
 abstract class IListSessionViewModel {
   getAllSessions();
+  getManagerRS();
 }
 
 class ListSession extends StatelessWidget {
@@ -34,7 +35,8 @@ class ListSession extends StatelessWidget {
                           child: ListView.builder(
                         itemCount: data!.length,
                         itemBuilder: (context, index) {
-                          return LineSession(data, index);
+                          return LineSession(
+                              data, index, _viewModel.getManagerRS());
                         },
                       ));
                     }

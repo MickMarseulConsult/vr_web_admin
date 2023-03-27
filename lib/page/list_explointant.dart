@@ -49,7 +49,6 @@ class ListExploitant extends StatelessWidget {
                       ));
                     }
                   })),
-          Text(viewModel.getIdManager().toString())
         ],
       ),
     );
