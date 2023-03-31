@@ -1,5 +1,11 @@
 {
     "pageUsers" : "Managers",
     "session" : "Sessions",
-    "login" : "Sign in"
+    "login" : "Sign in",
+    "logout" : "Logout",
+    "start_session" : "Start time : ",
+    "validation_session" : "validation time : ",
+    "end_session" : "end time :",
+    "nb_player" : "Players numbers : ",
+    "nb_session" : " sessions numbers since : "
 }

@@ -22,8 +22,17 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "end_session": MessageLookupByLibrary.simpleMessage("Heure de fin :"),
         "login": MessageLookupByLibrary.simpleMessage("Identification"),
+        "logout": MessageLookupByLibrary.simpleMessage("Déconnexion"),
+        "nb_player": MessageLookupByLibrary.simpleMessage("Nb de joueurs : "),
+        "nb_session":
+            MessageLookupByLibrary.simpleMessage(" session depuis le : "),
         "pageUsers": MessageLookupByLibrary.simpleMessage("Exploitants"),
-        "session": MessageLookupByLibrary.simpleMessage("Sessions")
+        "session": MessageLookupByLibrary.simpleMessage("Sessions"),
+        "start_session":
+            MessageLookupByLibrary.simpleMessage("Heure de départ : "),
+        "validation_session":
+            MessageLookupByLibrary.simpleMessage("Heure de validation : ")
       };
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vr_web_admin/page/listsession_viewModel.dart';
+import 'package:vr_web_admin/page/menu_viewmodel.dart';
 //import 'package:flutter_avance/data/controllers/remote_data_manager.dart';
 //import 'package:flutter_avance/data/model/user.dart';
 import 'package:vr_web_admin/use_cases/login_use_cases.dart';
@@ -9,8 +10,10 @@ import 'package:vr_web_admin/page/login_screen.dart';
 import 'package:vr_web_admin/page/login_viewmodel.dart';
 import 'package:vr_web_admin/page/list_session.dart';
 import 'package:vr_web_admin/page/list_explointant.dart';
-import 'package:vr_web_admin/page/listexplointant_viewmode.dart';
-import 'package:vr_web_admin/page/widgets/line_exploitant_viewmodel.dart';
+import 'package:vr_web_admin/page/listexplointant_viewmodel.dart';
+import 'package:vr_web_admin/page/menu.dart';
+import 'package:vr_web_admin/page/menu_viewmodel.dart';
+//import 'package:vr_web_admin/page/widgets/line_exploitant_viewmodel.dart';
 //import 'package:vr_web_admin/models/users.dart';
 //import 'package:blindtest_manager_web/ui/screens/settings_screen.dart';
 
@@ -20,7 +23,7 @@ import 'package:http/http.dart';
 
 class NavigationDelegate extends RouterDelegate<NavigationPath>
     with ChangeNotifier, PopNavigatorRouterDelegateMixin<NavigationPath>
-    implements LoginRouter, UserHomeRouter {
+    implements LoginRouter, RouterGeneral {
   //final RemoteDataManager _remoteDataManager = RemoteDataManager();
   DirectusUser? _currentUser;
   String? get currentUserID => _currentUser!.id;
@@ -28,6 +31,8 @@ class NavigationDelegate extends RouterDelegate<NavigationPath>
   //final routerGeneral = RouterGeneral;
   bool _displaySettings = false;
   bool _idAdmin = false;
+  bool _displayManager = false;
+  bool _displaySession = false;
 
   final DirectusApiManager _apiManager = DirectusApiManager(
       baseURL: "http://127.0.0.1:8055", httpClient: Client());
@@ -42,12 +47,16 @@ class NavigationDelegate extends RouterDelegate<NavigationPath>
       pagesList.add(MaterialPage(child: loginScreen));
     } else {
       if (_idAdmin == false) {
-        final listSessionPage =
-            ListSession(ListSessionViewModel(_currentUser, _apiManager));
+        final listSessionPage = ListSession(
+            ListSessionViewModel(_currentUser, _apiManager),
+            MenuViewModel(this),
+            this);
         pagesList.add(MaterialPage(child: listSessionPage));
       } else {
-        final listExploitantPage = ListExploitant(ListExploitantViewModel(
-            _apiManager, user, this, ExploitantUseCases(_apiManager)));
+        final listExploitantPage = ListExploitant(
+            ListExploitantViewModel(ExploitantUseCases(_apiManager)),
+            MenuViewModel(this),
+            this);
         pagesList.add(MaterialPage(child: listExploitantPage));
       }
     }
@@ -102,5 +111,15 @@ class NavigationDelegate extends RouterDelegate<NavigationPath>
       _idAdmin = true;
     }
     notifyListeners();
+  }
+
+  @override
+  displayManager() {
+    _displayManager = true;
+  }
+
+  @override
+  displaySession() {
+    _displaySession = true;
   }
 }

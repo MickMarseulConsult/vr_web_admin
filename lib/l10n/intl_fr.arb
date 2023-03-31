@@ -1,5 +1,11 @@
 {
     "pageUsers" : "Exploitants",
     "session" : "Sessions",
-    "login" : "Identification"
+    "login" : "Identification",
+    "logout" : "Déconnexion",
+    "start_session" : "Heure de départ : ",
+    "validation_session" : "Heure de validation : ",
+    "end_session" : "Heure de fin :",
+    "nb_player" : "Nb de joueurs : ",
+    "nb_session" : " session depuis le : "
 }

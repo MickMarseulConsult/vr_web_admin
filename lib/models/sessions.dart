@@ -7,8 +7,9 @@ class Sessions extends DirectusItem {
 
   Sessions(Map<String, dynamic> rawReceivedData) : super(rawReceivedData);
 
-  String get manager => getValue(forKey: "idManager");
-  String get exploitant => getValue(forKey: "exploitant");
+  int get idSession => getValue(forKey: "id");
+  String get manager => getValue(forKey: "exploitant_session");
+  //String get exploitant => getValue(forKey: "exploitant");
   DateTime get startDate => getDateTime(forKey: "start_time");
   DateTime get validationDate => getDateTime(forKey: "validation_time");
   DateTime get endDate => getDateTime(forKey: "end_time");

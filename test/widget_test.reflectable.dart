@@ -4,12 +4,11 @@
 import 'dart:core';
 import 'package:directus_api_manager/src/annotations.dart' as prefix0;
 import 'package:directus_api_manager/src/model/directus_user.dart' as prefix6;
+import 'package:vr_web_admin/models/player.dart' as prefix3;
 import 'package:vr_web_admin/models/sessions.dart' as prefix4;
 import 'package:vr_web_admin/models/user_detail.dart' as prefix5;
-import 'package:vr_web_admin/page/listexplointant_viewmode.dart' as prefix2;
+import 'package:vr_web_admin/page/listexplointant_viewmodel.dart' as prefix2;
 import 'package:vr_web_admin/page/login_viewmodel.dart' as prefix1;
-import 'package:vr_web_admin/page/widgets/line_exploitant_viewmodel.dart'
-    as prefix3;
 
 // ignore_for_file: camel_case_types
 // ignore_for_file: implementation_imports
@@ -61,10 +60,8 @@ final _data = <r.Reflectable, r.ReflectorData>{
             {},
             {},
             {
-              r'': (bool b) => (_apiManager, _user, _router, _useCases) => b
-                  ? prefix2.ListExploitantViewModel(
-                      _apiManager, _user, _router, _useCases)
-                  : null
+              r'': (bool b) => (_useCases) =>
+                  b ? prefix2.ListExploitantViewModel(_useCases) : null
             },
             1,
             -1,
@@ -72,8 +69,8 @@ final _data = <r.Reflectable, r.ReflectorData>{
             const <Object>[const prefix0.DirectusCollection()],
             null),
         r.NonGenericClassMirrorImpl(
-            r'LineExploitantViewModel',
-            r'.LineExploitantViewModel',
+            r'Players',
+            r'.Players',
             134217735,
             2,
             const prefix0.DirectusCollection(),
@@ -84,16 +81,15 @@ final _data = <r.Reflectable, r.ReflectorData>{
             {},
             {},
             {
-              r'newItem': (bool b) => (_apiManager) => b
-                  ? prefix3.LineExploitantViewModel.newItem(_apiManager)
-                  : null
+              r'': (bool b) => (rawReceivedData) =>
+                  b ? prefix3.Players(rawReceivedData) : null
             },
             2,
             -1,
             const <int>[-1],
             const <Object>[
               const prefix0.DirectusCollection(),
-              const prefix0.CollectionMetadata(endpointName: "users_details")
+              const prefix0.CollectionMetadata(endpointName: "players")
             ],
             null),
         r.NonGenericClassMirrorImpl(
@@ -173,17 +169,17 @@ final _data = <r.Reflectable, r.ReflectorData>{
       <m.DeclarationMirror>[
         r.MethodMirrorImpl(r'', 0, 0, -1, -1, -1, null, const <int>[0, 1],
             const prefix0.DirectusCollection(), const []),
-        r.MethodMirrorImpl(r'', 0, 1, -1, -1, -1, null, const <int>[2, 3, 4, 5],
+        r.MethodMirrorImpl(r'', 0, 1, -1, -1, -1, null, const <int>[2],
             const prefix0.DirectusCollection(), const []),
-        r.MethodMirrorImpl(r'newItem', 0, 2, -1, -1, -1, null, const <int>[6],
+        r.MethodMirrorImpl(r'', 0, 2, -1, -1, -1, null, const <int>[3],
             const prefix0.DirectusCollection(), const []),
         r.MethodMirrorImpl(r'newItem', 0, 3, -1, -1, -1, null, const <int>[],
             const prefix0.DirectusCollection(), const []),
-        r.MethodMirrorImpl(r'', 0, 3, -1, -1, -1, null, const <int>[7],
+        r.MethodMirrorImpl(r'', 0, 3, -1, -1, -1, null, const <int>[4],
             const prefix0.DirectusCollection(), const []),
-        r.MethodMirrorImpl(r'', 0, 4, -1, -1, -1, null, const <int>[8],
+        r.MethodMirrorImpl(r'', 0, 4, -1, -1, -1, null, const <int>[5],
             const prefix0.DirectusCollection(), const []),
-        r.MethodMirrorImpl(r'', 0, 5, -1, -1, -1, null, const <int>[9],
+        r.MethodMirrorImpl(r'', 0, 5, -1, -1, -1, null, const <int>[6],
             const prefix0.DirectusCollection(), const []),
         r.MethodMirrorImpl(r'newDirectusUser', 0, 5, -1, -1, -1, null,
             const <int>[], const prefix0.DirectusCollection(), const [])
@@ -214,42 +210,6 @@ final _data = <r.Reflectable, r.ReflectorData>{
             null,
             null),
         r.ParameterMirrorImpl(
-            r'_apiManager',
-            134349862,
-            1,
-            const prefix0.DirectusCollection(),
-            -1,
-            -1,
-            -1,
-            null,
-            const [],
-            null,
-            null),
-        r.ParameterMirrorImpl(
-            r'_user',
-            134349862,
-            1,
-            const prefix0.DirectusCollection(),
-            5,
-            -1,
-            -1,
-            null,
-            const [],
-            null,
-            null),
-        r.ParameterMirrorImpl(
-            r'_router',
-            134349862,
-            1,
-            const prefix0.DirectusCollection(),
-            -1,
-            -1,
-            -1,
-            null,
-            const [],
-            null,
-            null),
-        r.ParameterMirrorImpl(
             r'_useCases',
             134349862,
             1,
@@ -262,8 +222,8 @@ final _data = <r.Reflectable, r.ReflectorData>{
             null,
             null),
         r.ParameterMirrorImpl(
-            r'_apiManager',
-            134349862,
+            r'rawReceivedData',
+            151127046,
             2,
             const prefix0.DirectusCollection(),
             -1,
@@ -313,7 +273,7 @@ final _data = <r.Reflectable, r.ReflectorData>{
       <Type>[
         prefix1.LoginViewModel,
         prefix2.ListExploitantViewModel,
-        prefix3.LineExploitantViewModel,
+        prefix3.Players,
         prefix4.Sessions,
         prefix5.UsersDetails,
         prefix6.DirectusUser
@@ -334,7 +294,7 @@ final _data = <r.Reflectable, r.ReflectorData>{
         r.LibraryMirrorImpl(
             r'',
             Uri.parse(
-                'package:vr_web_admin/page/listexplointant_viewmode.dart'),
+                'package:vr_web_admin/page/listexplointant_viewmodel.dart'),
             const prefix0.DirectusCollection(),
             const <int>[],
             {},
@@ -343,8 +303,7 @@ final _data = <r.Reflectable, r.ReflectorData>{
             null),
         r.LibraryMirrorImpl(
             r'',
-            Uri.parse(
-                'package:vr_web_admin/page/widgets/line_exploitant_viewmodel.dart'),
+            Uri.parse('package:vr_web_admin/models/player.dart'),
             const prefix0.DirectusCollection(),
             const <int>[],
             {},
