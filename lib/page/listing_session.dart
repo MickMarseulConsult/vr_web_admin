@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:vr_web_admin/models/sessions.dart';
-import 'package:vr_web_admin/page/widgets/line_session.dart';
+//import 'package:vr_web_admin/page/listingsession_viewmodel.dart';
 import 'package:vr_web_admin/generated/l10n.dart';
 import 'package:vr_web_admin/page/menu.dart';
 import 'package:vr_web_admin/page/menu_viewmodel.dart';
+import 'package:vr_web_admin/page/widgets/line_session.dart';
 
-abstract class IListSessionViewModel extends ChangeNotifier {
+abstract class IListingSessionViewModel {
   getAllSessionsById();
   getManagerRS();
   getPlayerSession(int id);
 }
 
-class ListSession extends StatelessWidget {
-  final IListSessionViewModel viewModel;
+class ListingSession extends StatelessWidget {
+  final IListingSessionViewModel _viewmodel;
   final IMenuViewModel menuViewModel;
   final RouterGeneral routerGeneral;
-  const ListSession(this.viewModel, this.menuViewModel, this.routerGeneral,
+  const ListingSession(this._viewmodel, this.menuViewModel, this.routerGeneral,
       {super.key});
 
   @override
@@ -29,7 +30,7 @@ class ListSession extends StatelessWidget {
               width: double.infinity,
               height: 500,
               child: FutureBuilder<List<Sessions>>(
-                  future: viewModel.getAllSessionsById(),
+                  future: _viewmodel.getAllSessionsById(),
                   initialData: const [],
                   builder: (context, snapshot) {
                     if (snapshot.hasError) {
@@ -45,8 +46,8 @@ class ListSession extends StatelessWidget {
                           return LineSession(
                               data,
                               index,
-                              viewModel.getManagerRS(),
-                              viewModel.getPlayerSession(
+                              _viewmodel.getManagerRS(),
+                              _viewmodel.getPlayerSession(
                                   data.elementAt(index).idSession));
                         },
                       ));

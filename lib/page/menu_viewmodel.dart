@@ -1,7 +1,8 @@
+import 'package:directus_api_manager/directus_api_manager.dart';
 import 'package:vr_web_admin/page/menu.dart';
 
 abstract class RouterGeneral {
-  displaySession();
+  displaySession(DirectusUser? id);
   displayManager();
   logoutCurrentUser();
 }
@@ -22,7 +23,7 @@ class MenuViewModel extends IMenuViewModel {
   }
 
   @override
-  void userTouchedSession() {
-    router.displaySession();
+  void userTouchedSession(DirectusUser? id) {
+    router.displaySession(id);
   }
 }

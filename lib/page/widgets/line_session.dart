@@ -17,7 +17,7 @@ class LineSession extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      height: 50,
+      height: 60,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -66,11 +66,10 @@ class LineSession extends StatelessWidget {
                     if (snapshot.hasData) {
                       final data = snapshot.data;
                       return Center(
-                          child: ListView.builder(
-                              itemCount: data!.length,
-                              itemBuilder: (context, index) {
-                                return Text(data.first);
-                              }));
+                        child: Tooltip(
+                            message: data!.join("\n"),
+                            child: const Icon(Icons.people_alt)),
+                      );
                     } else if (snapshot.hasError) {
                       return Text('Error name: ${snapshot.error}');
                     } else {

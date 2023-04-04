@@ -1,7 +1,9 @@
+//import 'package:directus_api_manager/directus_api_manager.dart';
+import 'package:directus_api_manager/directus_api_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:vr_web_admin/generated/l10n.dart';
 //import 'package:directus_api_manager/directus_api_manager.dart';
-import 'package:vr_web_admin/models/user_detail.dart';
+//import 'package:vr_web_admin/models/user_detail.dart';
 import 'package:vr_web_admin/page/widgets/line_exploitant.dart';
 import 'package:vr_web_admin/page/menu.dart';
 import 'package:vr_web_admin/page/menu_viewmodel.dart';
@@ -11,7 +13,8 @@ abstract class IListExploitantViewModel extends ChangeNotifier {
   //String get email;
   getAllExploitant();
   //getInfoById(String index);
-  getSession(String idExploitant);
+  int getSession(String idExploitant);
+  getAllUsers();
   //final DirectusApiManager apiManager;
   //updateSession(String manager, bool status);
 
@@ -42,7 +45,8 @@ class _ListExploitantState extends State<ListExploitant> {
           SizedBox(
               width: double.infinity,
               height: 500,
-              child: FutureBuilder<List<UsersDetails>>(
+              //child: FutureBuilder<List<UsersDetails>>(
+              child: FutureBuilder<List<DirectusUser>>(
                   future: widget.viewModel.getAllExploitant(),
                   initialData: const [],
                   builder: (context, snapshot) {
@@ -59,10 +63,11 @@ class _ListExploitantState extends State<ListExploitant> {
                           return LineExploitant(
                             snapshot.data!,
                             index,
-                            widget.viewModel.getSession(
-                              snapshot.data!.elementAt(index).id!,
-                            ),
+                            // widget.viewModel.getSession(
+                            //   snapshot.data!.elementAt(index).id!,
+                            // ),
                             widget.viewModel.userTouchedUpdateButton,
+                            widget.routerGeneral,
                           );
                         },
                       ));

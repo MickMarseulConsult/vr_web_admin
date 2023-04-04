@@ -1,19 +1,22 @@
 import 'package:directus_api_manager/directus_api_manager.dart';
 import 'package:vr_web_admin/models/sessions.dart';
 import 'package:vr_web_admin/page/list_explointant.dart';
-import 'package:vr_web_admin/models/user_detail.dart';
+import 'dart:async';
+//import 'package:vr_web_admin/models/user_detail.dart';
 
 abstract class IExploitantUseCases {
   //Future<List?> getInfo(String? index);
   getListExploitant();
+  getUsers();
+  //updateNbSession(String manager, int nbSession);
   getNbSession(String? exploitant);
   updateSessionById(String manager, bool status);
 }
 
-abstract class UserHomeRouter {
-  //displaySettings();
-  //void logoutCurrentUser();
-}
+// abstract class UserHomeRouter {
+//   //displaySettings();
+//   //void logoutCurrentUser();
+// }
 
 @DirectusCollection()
 class ListExploitantViewModel extends IListExploitantViewModel {
@@ -22,7 +25,9 @@ class ListExploitantViewModel extends IListExploitantViewModel {
   //final DirectusApiManager _apiManager;
   final IExploitantUseCases _useCases;
   List<Sessions> listSession = [];
-  List<UsersDetails> listManager = [];
+  List<DirectusUser> listManager = [];
+  List managerComplete = [];
+  int nbSession = 0;
 
   ListExploitantViewModel(
       //this._apiManager, this._user, this._router, this._useCases);
@@ -38,13 +43,38 @@ class ListExploitantViewModel extends IListExploitantViewModel {
   //   return _useCases.getInfo(index);
   // }
 
+// not used // not used // not used
   @override
-  Future<List<UsersDetails>> getAllExploitant() {
+  Future<List<DirectusUser>> getAllUsers() async {
+    Future<List<DirectusUser>> listNoAdmin = _useCases.getUsers();
+    try {
+      await _useCases.getUsers();
+    } catch (exe) {
+      print(exe);
+      throw false;
+    }
+    return listNoAdmin;
+  }
+  // not used // not used // not used
+
+  @override
+  Future<List<DirectusUser>> getAllExploitant() {
     return _useCases.getListExploitant();
   }
 
-  int getSession(String idExploitant) {
-    return _useCases.getNbSession(idExploitant);
+  Future<void> loadData(String exploitant) async {
+    final List allManangers = await _useCases.getListExploitant();
+    for (var i = 0; i < allManangers.length; i++) {
+      final int sessionManagers = await _useCases.getNbSession(exploitant);
+      managerComplete.add(allManangers.elementAt(i));
+    }
+  }
+
+  @override
+  getSession(String? idExploitant) async {
+    nbSession = await _useCases.getNbSession(idExploitant);
+    print("nbsession : " + nbSession.toString());
+    return nbSession;
   }
 
   // @override

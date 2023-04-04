@@ -1,4 +1,5 @@
 //import 'package:vr_web_admin/models/users.dart';
+//import 'package:vr_web_admin/models/user_detail.dart';
 import 'package:vr_web_admin/page/login_viewmodel.dart';
 import 'package:directus_api_manager/directus_api_manager.dart';
 //import 'package:http/http.dart';
@@ -25,10 +26,14 @@ class LoginUseCases implements ILoginUseCases {
 
     if (loginResult.type == DirectusLoginResultType.success) {
       connectedUser = await _apiManager.currentDirectusUser();
-
-      if (connectedUser!.description == "admin") {
-        _isAdmin = true;
+      if (connectedUser != null) {
+        if (connectedUser.getValue(forKey: "is_admin") == true) {
+          _isAdmin = true;
+        }
+        // final UsersDetails _userDetail =
+        //     UsersDetails(connectedUser.getRawData());
       }
+
       //final user = User(connectedUser.toMap());
       return connectedUser;
     } else {
