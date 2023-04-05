@@ -7,7 +7,7 @@ import 'package:vr_web_admin/page/menu_viewmodel.dart';
 import 'package:vr_web_admin/page/widgets/line_session.dart';
 
 abstract class IListingSessionViewModel {
-  getAllSessionsById();
+  getAllSessionsById(DateTime startTimeSession, DateTime endTimeSession);
   getManagerRS();
   getPlayerSession(int id);
 }
@@ -28,6 +28,7 @@ class ListingSession extends StatefulWidget {
 
 class _ListingSessionState extends State<ListingSession> with RestorationMixin {
   bool _stateSession = false;
+  DateTime newDate = DateTime.now();
 
   final MaterialStateProperty<Icon?> thumbIcon =
       MaterialStateProperty.resolveWith<Icon?>(
@@ -40,8 +41,21 @@ class _ListingSessionState extends State<ListingSession> with RestorationMixin {
     },
   );
 
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   var date = DateTime.now();
+  //   newDate = DateTime(date.year, date.month - 1, date.day);
+  //   print(newDate);
+  //   // set initial value of _active to autorised
+  //   //_active = widget.usersList.elementAt(widget.id).autorised;
+  // }
+
   @override
   String? get restorationId => widget.restorationId;
+  DateTime endingDate = DateTime.now();
+  DateTime startingDate = DateTime(
+      DateTime.now().year, DateTime.now().month - 1, DateTime.now().day);
 
   final RestorableDateTimeN _startDate = RestorableDateTimeN(DateTime(2023));
   final RestorableDateTimeN _endDate = RestorableDateTimeN(DateTime.now());
@@ -63,6 +77,9 @@ class _ListingSessionState extends State<ListingSession> with RestorationMixin {
       setState(() {
         _startDate.value = newSelectedDate.start;
         _endDate.value = newSelectedDate.end;
+        startingDate = newSelectedDate.start;
+        endingDate = newSelectedDate.end;
+        //print("range : ${_startDate.value} - ${_endDate.value}");
       });
     }
   }
@@ -123,8 +140,6 @@ class _ListingSessionState extends State<ListingSession> with RestorationMixin {
               onChanged: (bool value) {
                 setState(() {
                   _stateSession = value;
-                  // widget.userTouchedUpdateButton(
-                  //     widget.usersList.elementAt(widget.id).id, value);
                 });
               },
             ),
@@ -134,7 +149,7 @@ class _ListingSessionState extends State<ListingSession> with RestorationMixin {
                 onPressed: () {
                   _restorableDateRangePickerRouteFuture.present();
                 },
-                child: const Text('Open Date Range Picker'),
+                child: Text(S.of(context).datepicker),
               ),
             ),
           ]),
@@ -143,7 +158,8 @@ class _ListingSessionState extends State<ListingSession> with RestorationMixin {
                   width: double.infinity,
                   height: 500,
                   child: FutureBuilder<List<Sessions>>(
-                      future: widget._viewmodel.getAllSessionsById(),
+                      future: widget._viewmodel
+                          .getAllSessionsById(startingDate, endingDate),
                       initialData: const [],
                       builder: (context, snapshot) {
                         if (snapshot.hasError) {

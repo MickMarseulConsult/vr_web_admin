@@ -2,7 +2,7 @@
 import 'package:vr_web_admin/page/listing_session.dart';
 
 abstract class IUseCaseListingSession {
-  igetAllSessionsById();
+  igetAllSessionsById(DateTime startTimeSession, DateTime endTimeSession);
   igetManagerRS();
   igetPlayerSession(int id);
 }
@@ -19,8 +19,9 @@ class ListingSessionViewModel extends IListingSessionViewModel {
   ListingSessionViewModel(this._useCaseListing);
 
   @override
-  getAllSessionsById() {
-    return _useCaseListing.igetAllSessionsById();
+  getAllSessionsById(DateTime startTimeSession, DateTime endTimeSession) {
+    return _useCaseListing.igetAllSessionsById(
+        startTimeSession, endTimeSession);
   }
 
   @override

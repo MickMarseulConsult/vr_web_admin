@@ -13,5 +13,6 @@
     "stat_nb_session" : "Number of sessions launched during the period : ",
     "stat_nb_validate_session" : "Number of sessions launched and validated during the period : ",
     "stat_nb_player" : "Number of players having played a session launched during the period : ",
-    "stat_nb_player_validate": "Number of players having played a session launched and validated during the period : "
+    "stat_nb_player_validate": "Number of players having played a session launched and validated during the period : ",
+    "datepicker" : "Open Date Range Picker"
 }

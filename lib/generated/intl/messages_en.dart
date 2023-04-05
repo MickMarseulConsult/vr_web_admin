@@ -24,6 +24,8 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "complete_version":
             MessageLookupByLibrary.simpleMessage("All sessions"),
+        "datepicker":
+            MessageLookupByLibrary.simpleMessage("Open Date Range Picker"),
         "end_session": MessageLookupByLibrary.simpleMessage("end time :"),
         "login": MessageLookupByLibrary.simpleMessage("Sign in"),
         "logout": MessageLookupByLibrary.simpleMessage("Logout"),

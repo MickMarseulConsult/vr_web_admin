@@ -13,5 +13,6 @@
     "stat_nb_session" : "Nombre de sessions lancées pendant la période : ",
     "stat_nb_validate_session" : "Nombre de sessions lancées et validées pendant la période : ",
     "stat_nb_player" : "Nombre de joueurs ayant effectué une session lancée pendant la période : ",
-    "stat_nb_player_validate": "Nombre de joueurs ayant effectué une session lancée et validée pendant la période : "
+    "stat_nb_player_validate": "Nombre de joueurs ayant effectué une session lancée et validée pendant la période : ",
+    "datepicker" : "Sélectionez une plage de dates"
 }

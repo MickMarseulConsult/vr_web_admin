@@ -199,6 +199,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Open Date Range Picker`
+  String get datepicker {
+    return Intl.message(
+      'Open Date Range Picker',
+      name: 'datepicker',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

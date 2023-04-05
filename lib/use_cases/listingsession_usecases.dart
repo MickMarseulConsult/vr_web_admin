@@ -13,26 +13,42 @@ class UseCaseListingSession extends DirectusItem
   UseCaseListingSession(this._apiManager, this._directusUser) : super.newItem();
 
   @override
-  Future<List<Sessions>> igetAllSessionsById() async {
-    final List<Sessions> listById;
+  Future<List<Sessions>> igetAllSessionsById(
+      DateTime startTimeSession, DateTime endTimeSession) async {
+    List<Sessions> listById;
     try {
       // listById =
       //     List<Sessions>.from(await _apiManager!.findListOfItems<Sessions>());
       // final Iterable<Sessions> filteredID =
       //     listById.where((listById) => listById.manager == _user!.id);
 
-      listById = List<Sessions>.from(
-          await _apiManager.findListOfItems<Sessions>(
-              filter: PropertyFilter(
-                  field: "exploitant_session",
-                  operator: FilterOperator.equals,
-                  value: _directusUser.id)));
-
+      listById =
+          List<Sessions>.from(await _apiManager.findListOfItems<Sessions>(
+        filter: PropertyFilter(
+            field: "exploitant_session",
+            operator: FilterOperator.equals,
+            value: _directusUser.id),
+      ));
+      listById = getSessionByDate(listById, startTimeSession, endTimeSession)
+          as List<Sessions>;
       return listById.toList();
     } catch (exe) {
       print(exe);
       throw false;
     }
+  }
+
+  List getSessionByDate(
+      List<Sessions> listOfSession, DateTime startTime, DateTime endtime) {
+    List<Sessions> newList = [];
+
+    for (var i = 0; i < listOfSession.length; i++) {
+      if (listOfSession.elementAt(i).startDate.compareTo(startTime) >= 0) {
+        newList.add(listOfSession.elementAt(i));
+      }
+    }
+
+    return newList.toList();
   }
 
   // @override
