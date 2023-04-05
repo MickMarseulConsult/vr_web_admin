@@ -22,6 +22,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "complete_version":
+            MessageLookupByLibrary.simpleMessage("Toutes les sessions"),
         "end_session": MessageLookupByLibrary.simpleMessage("Heure de fin :"),
         "login": MessageLookupByLibrary.simpleMessage("Identification"),
         "logout": MessageLookupByLibrary.simpleMessage("Déconnexion"),
@@ -30,8 +32,17 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(" session depuis le : "),
         "pageUsers": MessageLookupByLibrary.simpleMessage("Exploitants"),
         "session": MessageLookupByLibrary.simpleMessage("Sessions"),
+        "simple_version": MessageLookupByLibrary.simpleMessage("Statistiques"),
         "start_session":
             MessageLookupByLibrary.simpleMessage("Heure de départ : "),
+        "stat_nb_player": MessageLookupByLibrary.simpleMessage(
+            "Nombre de joueurs ayant effectué une session lancée pendant la période : "),
+        "stat_nb_player_validate": MessageLookupByLibrary.simpleMessage(
+            "Nombre de joueurs ayant effectué une session lancée et validée pendant la période : "),
+        "stat_nb_session": MessageLookupByLibrary.simpleMessage(
+            "Nombre de sessions lancées pendant la période : "),
+        "stat_nb_validate_session": MessageLookupByLibrary.simpleMessage(
+            "Nombre de sessions lancées et validées pendant la période : "),
         "validation_session":
             MessageLookupByLibrary.simpleMessage("Heure de validation : ")
       };

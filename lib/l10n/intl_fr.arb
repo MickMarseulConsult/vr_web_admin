@@ -7,5 +7,11 @@
     "validation_session" : "Heure de validation : ",
     "end_session" : "Heure de fin :",
     "nb_player" : "Nb de joueurs : ",
-    "nb_session" : " session depuis le : "
+    "nb_session" : " session depuis le : ",
+    "simple_version" : "Statistiques",
+    "complete_version" : "Toutes les sessions",
+    "stat_nb_session" : "Nombre de sessions lancées pendant la période : ",
+    "stat_nb_validate_session" : "Nombre de sessions lancées et validées pendant la période : ",
+    "stat_nb_player" : "Nombre de joueurs ayant effectué une session lancée pendant la période : ",
+    "stat_nb_player_validate": "Nombre de joueurs ayant effectué une session lancée et validée pendant la période : "
 }

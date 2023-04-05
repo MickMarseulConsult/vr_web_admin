@@ -139,6 +139,66 @@ class S {
       args: [],
     );
   }
+
+  /// `statistical version`
+  String get simple_version {
+    return Intl.message(
+      'statistical version',
+      name: 'simple_version',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `All sessions`
+  String get complete_version {
+    return Intl.message(
+      'All sessions',
+      name: 'complete_version',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Number of sessions launched during the period : `
+  String get stat_nb_session {
+    return Intl.message(
+      'Number of sessions launched during the period : ',
+      name: 'stat_nb_session',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Number of sessions launched and validated during the period : `
+  String get stat_nb_validate_session {
+    return Intl.message(
+      'Number of sessions launched and validated during the period : ',
+      name: 'stat_nb_validate_session',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Number of players having played a session launched during the period : `
+  String get stat_nb_player {
+    return Intl.message(
+      'Number of players having played a session launched during the period : ',
+      name: 'stat_nb_player',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Number of players having played a session launched and validated during the period : `
+  String get stat_nb_player_validate {
+    return Intl.message(
+      'Number of players having played a session launched and validated during the period : ',
+      name: 'stat_nb_player_validate',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

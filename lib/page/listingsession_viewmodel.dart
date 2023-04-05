@@ -1,4 +1,4 @@
-import 'package:directus_api_manager/directus_api_manager.dart';
+//import 'package:directus_api_manager/directus_api_manager.dart';
 import 'package:vr_web_admin/page/listing_session.dart';
 
 abstract class IUseCaseListingSession {
@@ -14,6 +14,7 @@ abstract class UserHomeRouter {
 
 class ListingSessionViewModel extends IListingSessionViewModel {
   final IUseCaseListingSession _useCaseListing;
+  String rs = "";
 
   ListingSessionViewModel(this._useCaseListing);
 

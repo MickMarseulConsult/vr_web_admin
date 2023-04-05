@@ -1,13 +1,14 @@
 import 'package:directus_api_manager/directus_api_manager.dart';
 import 'package:vr_web_admin/models/player.dart';
 import 'package:vr_web_admin/models/sessions.dart';
-import 'package:vr_web_admin/models/user_detail.dart';
+//import 'package:vr_web_admin/models/user_detail.dart';
 import 'package:vr_web_admin/page/listingsession_viewmodel.dart';
 
 class UseCaseListingSession extends DirectusItem
     implements IUseCaseListingSession {
   final DirectusApiManager _apiManager;
   final DirectusUser _directusUser;
+  String rs = "";
 
   UseCaseListingSession(this._apiManager, this._directusUser) : super.newItem();
 
@@ -55,6 +56,7 @@ class UseCaseListingSession extends DirectusItem
   Future<String> igetManagerRS() async {
     DirectusUser? _user = await _apiManager.getDirectusUser(_directusUser.id!);
     String _myUser = _user!.getValue(forKey: "raison_sociale");
+    rs = _myUser;
     return _myUser;
   }
 
@@ -81,23 +83,5 @@ class UseCaseListingSession extends DirectusItem
       print(exe);
       throw false;
     }
-  }
-
-  @override
-  igetListExploitant() {
-    // TODO: implement igetListExploitant
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<int> igetNbSession(String? exploitant) {
-    // TODO: implement igetNbSession
-    throw UnimplementedError();
-  }
-
-  @override
-  iupdateSessionById(String manager, bool status) {
-    // TODO: implement iupdateSessionById
-    throw UnimplementedError();
   }
 }
