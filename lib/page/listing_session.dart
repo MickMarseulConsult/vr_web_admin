@@ -5,11 +5,15 @@ import 'package:vr_web_admin/generated/l10n.dart';
 import 'package:vr_web_admin/page/menu.dart';
 import 'package:vr_web_admin/page/menu_viewmodel.dart';
 import 'package:vr_web_admin/page/widgets/line_session.dart';
+import 'package:intl/intl.dart';
+import 'package:vr_web_admin/page/widgets/bloc_stat.dart';
 
 abstract class IListingSessionViewModel {
   getAllSessionsById(DateTime startTimeSession, DateTime endTimeSession);
+  getSessionDetail(DateTime startTimeSession, DateTime endTimeSession);
   getManagerRS();
   getPlayerSession(int id);
+  //String get rsManager => getManagerRS();
 }
 
 class ListingSession extends StatefulWidget {
@@ -132,7 +136,26 @@ class _ListingSessionState extends State<ListingSession> with RestorationMixin {
       body: Column(
         children: [
           Menu(widget.menuViewModel),
-          Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+          Row(mainAxisAlignment: MainAxisAlignment.start, children: [
+            FutureBuilder<String>(
+                future: widget._viewmodel.getManagerRS(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    return Text(snapshot.data!);
+                  } else if (snapshot.hasError) {
+                    return Text('Error: ${snapshot.error}');
+                  } else {
+                    return const CircularProgressIndicator();
+                  }
+                }),
+            Center(
+              child: OutlinedButton(
+                onPressed: () {
+                  _restorableDateRangePickerRouteFuture.present();
+                },
+                child: Text(S.of(context).datepicker),
+              ),
+            ),
             Text(S.of(context).simple_version),
             Switch(
               //thumbIcon: thumbIcon,
@@ -144,15 +167,32 @@ class _ListingSessionState extends State<ListingSession> with RestorationMixin {
               },
             ),
             Text(S.of(context).complete_version),
-            Center(
-              child: OutlinedButton(
-                onPressed: () {
-                  _restorableDateRangePickerRouteFuture.present();
-                },
-                child: Text(S.of(context).datepicker),
-              ),
-            ),
           ]),
+          Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Text(
+                  DateFormat('dd-MM-yyyy').format(startingDate),
+                  style: const TextStyle(
+                    fontSize: 13,
+                    color: Colors.black87,
+                  ),
+                ),
+              ),
+              const Text("-"),
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Text(
+                  DateFormat('dd-MM-yyyy').format(endingDate),
+                  style: const TextStyle(
+                    fontSize: 13,
+                    color: Colors.black87,
+                  ),
+                ),
+              ),
+            ],
+          ),
           _stateSession
               ? SizedBox(
                   width: double.infinity,
@@ -182,25 +222,9 @@ class _ListingSessionState extends State<ListingSession> with RestorationMixin {
                           ));
                         }
                       }))
-              : SizedBox(
-                  width: 800,
-                  height: 300,
-                  child: Card(
-                    elevation: 2,
-                    child: Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(S.of(context).stat_nb_session),
-                          Text(S.of(context).stat_nb_validate_session),
-                          Text(S.of(context).stat_nb_player),
-                          Text(S.of(context).stat_nb_player_validate),
-                        ],
-                      ),
-                    ),
-                  )),
+              : BLocStat(
+                  getSession: widget._viewmodel
+                      .getSessionDetail(startingDate, endingDate))
         ],
       ),
     );

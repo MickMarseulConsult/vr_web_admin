@@ -43,7 +43,8 @@ class UseCaseListingSession extends DirectusItem
     List<Sessions> newList = [];
 
     for (var i = 0; i < listOfSession.length; i++) {
-      if (listOfSession.elementAt(i).startDate.compareTo(startTime) >= 0) {
+      if (listOfSession.elementAt(i).startDate.compareTo(startTime) >= 0 &&
+          listOfSession.elementAt(i).startDate.compareTo(endtime) <= 0) {
         newList.add(listOfSession.elementAt(i));
       }
     }
@@ -70,10 +71,10 @@ class UseCaseListingSession extends DirectusItem
 
   @override
   Future<String> igetManagerRS() async {
-    DirectusUser? _user = await _apiManager.getDirectusUser(_directusUser.id!);
-    String _myUser = _user!.getValue(forKey: "raison_sociale");
-    rs = _myUser;
-    return _myUser;
+    DirectusUser? user = await _apiManager.getDirectusUser(_directusUser.id!);
+    String myUser = user!.getValue(forKey: "raison_sociale");
+    rs = myUser;
+    return myUser;
   }
 
   @override
@@ -81,8 +82,8 @@ class UseCaseListingSession extends DirectusItem
     //print("Id player : ${id.toString()}");
     List<Players> playerList = [];
     try {
-      playerList = List<Players>.from(await _apiManager!
-          .findListOfItems<Players>(
+      playerList = List<Players>.from(
+          await _apiManager.findListOfItems<Players>(
               filter: PropertyFilter(
                   field: "session",
                   operator: FilterOperator.equals,
